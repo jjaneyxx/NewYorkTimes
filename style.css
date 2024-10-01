@@ -1,3 +1,59 @@
 body {
   margin: 0;
 }
+
+header {
+  background-color: burlywood;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.search-icon,
+.account-icon {
+  width: 1.6em;
+  cursor: pointer;
+}
+
+.logo {
+  width: 600px; /*고정*/
+  margin: 1em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap; /* 여러 행으로 나누어 표현*/
+  border-bottom: 5px double black;
+  padding: 1em;
+}
+
+nav button {
+  background-color: white;
+  border: none;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+.article-img {
+  max-width: 100%; /* 최대 넓이는 부모 넓이의 100%*/
+  max-height: 250px;
+}
+
+.one-news {
+  border-bottom: 1px solid black;
+  padding: 1em 1em 0;
+}
