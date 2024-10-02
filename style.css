@@ -24,6 +24,10 @@ header {
   cursor: pointer;
 }
 
+.mobile-logo {
+  display: none;
+}
+
 /* 화면 너비가 768px 이하일 때 돋보기 아이콘을 숨기고, 햄버거를 표시 */
 @media (max-width: 768px) {
   .search-icon {
@@ -38,9 +42,22 @@ header {
     font-size: 1.6em;
     color: black;
   }
+
+  .desktop-logo {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: block;
+    width: 35vw;
+  }
+
+  nav a {
+    font-size: 1em;
+  }
 }
 
-.logo {
+.desktop-logo {
   width: 35vw; /*고정*/
   margin: 1em;
 }
