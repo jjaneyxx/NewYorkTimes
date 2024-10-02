@@ -3,7 +3,6 @@ body {
 }
 
 header {
-  background-color: burlywood;
   margin-top: 1em;
   display: flex;
   flex-direction: column;
@@ -117,7 +116,7 @@ a {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: burlywood;
+  background-color: black;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -129,6 +128,10 @@ a {
   width: 120px;
 }
 
+.side-menu-list button a {
+  color: white;
+}
+
 .side-menu .close-btn {
   position: absolute;
   top: 0;
@@ -137,6 +140,7 @@ a {
   margin-left: 50px;
   border: none;
   background: none;
+  color: white;
 }
 
 .side-menu-list {
@@ -146,6 +150,10 @@ a {
 }
 
 .side-menu-list button:hover {
-  background-color: beige;
+  background-color: white;
   border-radius: 3px;
+
+  a {
+    color: black;
+  }
 }
