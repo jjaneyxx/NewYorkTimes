@@ -24,6 +24,25 @@ header {
   cursor: pointer;
 }
 
+.search-container {
+  display: flex;
+}
+
+.search-box {
+  display: none;
+}
+
+.search-box.active {
+  display: flex;
+  margin: 0 10px;
+}
+
+.search-box.active button,
+input {
+  margin-left: 5px;
+  font-size: 1.1em;
+}
+
 .mobile-logo {
   display: none;
 }

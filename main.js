@@ -10,3 +10,12 @@ const getLatestNews = async () => {
 };
 
 getLatestNews();
+
+// 검색 아이콘을 클릭할 때 마다 검색창 토글
+const searchIcon = document.getElementById("searchIcon");
+const searchBox = document.getElementById("searchBox");
+
+searchIcon.addEventListener("click", (event) => {
+  console.log("검색창 나오기");
+  searchBox.classList.toggle("active"); // active 클래스 토글
+});
