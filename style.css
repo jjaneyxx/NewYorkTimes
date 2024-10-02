@@ -24,8 +24,24 @@ header {
   cursor: pointer;
 }
 
+/* 화면 너비가 768px 이하일 때 돋보기 아이콘을 숨기고, 햄버거를 표시 */
+@media (max-width: 768px) {
+  .search-icon {
+    display: none; /* 숨기기 */
+  }
+
+  .icon {
+    text-decoration: none;
+  }
+  .icon::before {
+    content: "\2630";
+    font-size: 1.6em;
+    color: black;
+  }
+}
+
 .logo {
-  width: 600px; /*고정*/
+  width: 35vw; /*고정*/
   margin: 1em;
 }
 
