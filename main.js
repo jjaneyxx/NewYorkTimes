@@ -14,8 +14,16 @@ getLatestNews();
 // 검색 아이콘을 클릭할 때 마다 검색창 토글
 const searchIcon = document.getElementById("searchIcon");
 const searchBox = document.getElementById("searchBox");
+const mediaQuery = window.matchMedia("(max-width : 768px)"); // 모바일 화면 크기를 체크하는 미디어쿼리
 
 searchIcon.addEventListener("click", (event) => {
+  event.preventDefault(); // <a>태그로 인한 링크 이동 방지
   console.log("검색창 나오기");
-  searchBox.classList.toggle("active"); // active 클래스 토글
+
+  // 현재가 모바일 화면이 아닐 때만 검색창 토글
+  if (!mediaQuery.matches) {
+    searchBox.classList.toggle("active"); // active 클래스 토글
+  } else {
+    console.log("모바일에서는 검색창이 뜨지 않음");
+  }
 });
