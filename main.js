@@ -18,12 +18,22 @@ const mediaQuery = window.matchMedia("(max-width : 768px)"); // 모바일 화면
 
 searchIcon.addEventListener("click", (event) => {
   event.preventDefault(); // <a>태그로 인한 링크 이동 방지
-  console.log("검색창 나오기");
 
   // 현재가 모바일 화면이 아닐 때만 검색창 토글
   if (!mediaQuery.matches) {
     searchBox.classList.toggle("active"); // active 클래스 토글
   } else {
     console.log("모바일에서는 검색창이 뜨지 않음");
+    // 모바일 화면 : 사이드 내비게이션 바 열기
+    openNav();
   }
 });
+
+const openNav = () => {
+  console.log("사이드 내비게이션바 오픈");
+  document.getElementById("sideNav").style.width = "250px";
+};
+
+const closeNav = () => {
+  document.getElementById("sideNav").style.width = "0";
+};
