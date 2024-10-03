@@ -1,8 +1,10 @@
 // day.js 의 relativeTime 플러그인 등록
 dayjs.extend(dayjs_plugin_relativeTime);
-
 const API_KEY = `d0ecea3618044871bcbb7c6832d38e2b`;
 let newsList = []; // 자주 사용하므로 전역변수로 둠
+const navMenus = document.querySelectorAll("nav button");
+navMenus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByCategory(event)));
+
 const getLatestNews = async () => {
   const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
   console.log("url:", url);
@@ -14,6 +16,16 @@ const getLatestNews = async () => {
 };
 
 getLatestNews();
+
+const getNewsByCategory = async (event) => {
+  const category = event.target.textContent.toLowerCase();
+  console.log("클릭된 카테고리:", category);
+  const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`);
+  const response = await fetch(url);
+  const data = await response.json();
+  newsList = data.articles; // render() 이전 newsList 재정립
+  render();
+};
 
 // 검색 아이콘을 클릭할 때 마다 검색창 토글
 const searchIcon = document.getElementById("searchIcon");
