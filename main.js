@@ -1,3 +1,6 @@
+// day.js 의 relativeTime 플러그인 등록
+dayjs.extend(dayjs_plugin_relativeTime);
+
 const API_KEY = `d0ecea3618044871bcbb7c6832d38e2b`;
 let newsList = []; // 자주 사용하므로 전역변수로 둠
 const getLatestNews = async () => {
@@ -42,16 +45,25 @@ const closeNav = () => {
 // 뉴스 그리기
 const render = () => {
   const newsHTML = newsList
-    .map(
-      (news) => `<div class="row one-news">
-          <figure class="col-lg-4"><img class="article-img" src=${news.urlToImage} /></figure>
-          <article class="col-lg-8">
-            <h2>${news.title}</h2>
-            <p>${news.description}</p>
-            <p>${news.source.name} * ${news.publishedAt}</p>
-          </article>
-        </div>`
-    )
+    .map((news) => {
+      // 조건 처리
+      const imageUrl = news.urlToImage ? news.urlToImage : "image/no-image.png";
+      const description = news.description ? (news.description.length > 200 ? news.description.substring(0, 200) + "..." : news.description) : "내용없음";
+      const source = news.source.name ? news.source.name : "No Source";
+
+      // 날짜를 상대적 시간으로 변환
+      const publishedTime = dayjs(news.publishedAt).fromNow();
+
+      // HTML 생성
+      return `<div class="row one-news">
+      <figure class="col-lg-4"><img class="article-img" src=${imageUrl} /></figure>
+      <article class="col-lg-8">
+        <h2>${news.title}</h2>
+        <p>${description}</p>
+        <p>${source} * ${publishedTime}</p>
+      </article>
+    </div>`;
+    })
     .join("");
 
   document.getElementById("news-board").innerHTML = newsHTML;
