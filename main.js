@@ -2,9 +2,11 @@
 dayjs.extend(dayjs_plugin_relativeTime);
 const API_KEY = `d0ecea3618044871bcbb7c6832d38e2b`;
 let newsList = []; // 자주 사용하므로 전역변수로 둠
+
 const navMenus = document.querySelectorAll("nav button");
 navMenus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByCategory(event)));
 
+// 메인 뉴스 렌더링
 const getLatestNews = async () => {
   const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
   console.log("url:", url);
@@ -17,6 +19,7 @@ const getLatestNews = async () => {
 
 getLatestNews();
 
+// 카테고리별 뉴스 렌더링
 const getNewsByCategory = async (event) => {
   const category = event.target.textContent.toLowerCase();
   console.log("클릭된 카테고리:", category);
@@ -24,6 +27,16 @@ const getNewsByCategory = async (event) => {
   const response = await fetch(url);
   const data = await response.json();
   newsList = data.articles; // render() 이전 newsList 재정립
+  render();
+};
+
+// 키워드별 뉴스 렌더링
+const getNewsByKeyword = async () => {
+  const keyword = document.getElementById("search-input").value;
+  const url = new URL(`https://newsapi.org/v2/top-headlines?country=us&q=${keyword}&apiKey=${API_KEY}`);
+  const response = await fetch(url);
+  const data = await response.json();
+  newsList = data.articles;
   render();
 };
 
@@ -80,3 +93,6 @@ const render = () => {
 
   document.getElementById("news-board").innerHTML = newsHTML;
 };
+
+// 검색창에서 키워드 찾기
+const searchKeyWord = () => {};
