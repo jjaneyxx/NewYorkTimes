@@ -8,10 +8,30 @@ const navMenus = document.querySelectorAll("nav button");
 navMenus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByCategory(event)));
 
 const getNewsResponse = async () => {
-  const response = await fetch(url);
-  const data = await response.json();
-  newsList = data.articles;
-  render(); // newsList 가 확정된 이후 호출
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    // 응답코드가 200(정상) 일 때 실행, 정상이 아니면 에러
+    if (response.status === 200) {
+      newsList = data.articles;
+      if (newsList.length === 0) {
+        throw new Error("No result for this search");
+      }
+      render();
+    } else {
+      throw new Error(data.message);
+    }
+  } catch (error) {
+    console.log(error);
+    errorRender(error.message);
+  }
+};
+
+// 에러 메시지 렌더링
+const errorRender = (errorMessage) => {
+  const errorHTML = `<div class="alert alert-danger" role="alert">
+  ${errorMessage} </div>`;
+  document.getElementById("news-board").innerHTML = errorHTML;
 };
 
 // 메인 뉴스 렌더링
