@@ -3,6 +3,10 @@ dayjs.extend(dayjs_plugin_relativeTime);
 const API_KEY = `d0ecea3618044871bcbb7c6832d38e2b`;
 let newsList = []; // 자주 사용하므로 전역변수로 둠
 let url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`); // URL 을 전역변수로 선언
+let totalResult = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
 
 const navMenus = document.querySelectorAll("nav button");
 navMenus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByCategory(event)));
@@ -14,10 +18,12 @@ const getNewsResponse = async () => {
     // 응답코드가 200(정상) 일 때 실행, 정상이 아니면 에러
     if (response.status === 200) {
       newsList = data.articles;
+      totalResult = data.totalResults;
       if (newsList.length === 0) {
         throw new Error("No result for this search");
       }
       render();
+      pageNationRender();
     } else {
       throw new Error(data.message);
     }
@@ -32,6 +38,20 @@ const errorRender = (errorMessage) => {
   const errorHTML = `<div class="alert alert-danger" role="alert">
   ${errorMessage} </div>`;
   document.getElementById("news-board").innerHTML = errorHTML;
+};
+
+const pageNationRender = () => {
+  const pageGroup = Math.ceil(page / groupSize);
+  const lastPage = Math.ceil(pageGroup * groupSize);
+  const firstPage = lastPage - (groupSize - 1);
+
+  let paginationHTML = ``;
+
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`;
+  }
+
+  document.querySelector(".pagination").innerHTML = paginationHTML;
 };
 
 // 메인 뉴스 렌더링
