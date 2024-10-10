@@ -13,8 +13,14 @@ navMenus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByCa
 
 const getNewsResponse = async () => {
   try {
+    // url 호출 이전 붙이기
+    url.searchParams.set("page", page); // &page = page
+    url.searchParams.set("pageSize", pageSize); // &page = page
+    // url 호출
     const response = await fetch(url);
+    console.log(response);
     const data = await response.json();
+    console.log(data);
     // 응답코드가 200(정상) 일 때 실행, 정상이 아니면 에러
     if (response.status === 200) {
       newsList = data.articles;
@@ -23,7 +29,7 @@ const getNewsResponse = async () => {
         throw new Error("No result for this search");
       }
       render();
-      pageNationRender();
+      pagiNationRender();
     } else {
       throw new Error(data.message);
     }
@@ -40,7 +46,8 @@ const errorRender = (errorMessage) => {
   document.getElementById("news-board").innerHTML = errorHTML;
 };
 
-const pageNationRender = () => {
+const pagiNationRender = () => {
+  // 현재 페이지가 속한 페이지 그룹을 나타내는 변수
   const pageGroup = Math.ceil(page / groupSize);
   const lastPage = Math.ceil(pageGroup * groupSize);
   const firstPage = lastPage - (groupSize - 1);
@@ -48,10 +55,17 @@ const pageNationRender = () => {
   let paginationHTML = ``;
 
   for (let i = firstPage; i <= lastPage; i++) {
-    paginationHTML += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`;
+    paginationHTML += `<li class="page-item"><a class="page-link" onclick = "moveToPage(${i})">${i}</a></li>`;
   }
 
   document.querySelector(".pagination").innerHTML = paginationHTML;
+};
+
+// 페이지네이션 페이지 이동
+const moveToPage = (pageNumber) => {
+  console.log("movetopage", pageNumber);
+  page = pageNumber; // 현재 page 는 동적으로 변함
+  getNewsResponse();
 };
 
 // 메인 뉴스 렌더링

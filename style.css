@@ -157,3 +157,7 @@ a {
     color: black;
   }
 }
+
+.page-item {
+  cursor: pointer;
+}
