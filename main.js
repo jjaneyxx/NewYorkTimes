@@ -70,16 +70,25 @@ const pagiNationRender = () => {
     firstPage = 1;
   }
 
-  let paginationHTML = `<li class="page-item" onclick = "moveToPage(${page - 1})">
-      <a class="page-link" href="#" tabindex="-1"><</a>
-    </li>`;
+  let paginationHTML = ``;
+
+  // 현재가 첫번째 페이지라면 < 버튼을 숨기기
+  if (page !== 1) {
+    paginationHTML = `<li class="page-item" onclick = "moveToPage(${page - 1})">
+    <a class="page-link" href="#" tabindex="-1"><</a>
+  </li>`;
+  }
+
   for (let i = firstPage; i <= lastPage; i++) {
     paginationHTML += `<li class="page-item ${i === page ? "active" : ""}"><a class="page-link" onclick = "moveToPage(${i})">${i}</a></li>`;
   }
 
-  paginationHTML += `<li class="page-item" onclick = "moveToPage(${page + 1})">
-      <a class="page-link" href="#">></a>
-    </li>`;
+  // 현재가 마지막 페이지라면 > 버튼을 숨기기
+  if (page !== totalPages) {
+    paginationHTML += `<li class="page-item" onclick = "moveToPage(${page + 1})">
+    <a class="page-link" href="#">></a>
+  </li>`;
+  }
 
   document.querySelector(".pagination").innerHTML = paginationHTML;
 };
