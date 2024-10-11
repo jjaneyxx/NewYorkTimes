@@ -4,9 +4,9 @@ const API_KEY = `d0ecea3618044871bcbb7c6832d38e2b`;
 let newsList = []; // 자주 사용하므로 전역변수로 둠
 let url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`); // URL 을 전역변수로 선언
 let totalResult = 0;
-let page = 1;
-const pageSize = 10;
-const groupSize = 5;
+let page = 1; // 현재 페이지 번호
+const pageSize = 10; // 화면에 표시되는 기사 개수
+const groupSize = 5; // 한 번에 보여줄 페이지 개수
 
 const navMenus = document.querySelectorAll("nav button");
 navMenus.forEach((menu) => menu.addEventListener("click", (event) => getNewsByCategory(event)));
@@ -47,15 +47,24 @@ const errorRender = (errorMessage) => {
 };
 
 const pagiNationRender = () => {
-  // 현재 페이지가 속한 페이지 그룹을 나타내는 변수
+  let lastPage = 1;
+  let firstPage = 1;
+  const totalPages = Math.ceil(totalResult / pageSize);
+  // pageGroup : 현재 페이지가 속해있는 그룹
   const pageGroup = Math.ceil(page / groupSize);
-  const lastPage = Math.ceil(pageGroup * groupSize);
-  const firstPage = lastPage - (groupSize - 1);
+  // lastPage 는 pageGroup 과 groupSize 에 의해 결정됨
+  lastPage = pageGroup * groupSize;
+  firstPage = lastPage - (groupSize - 1);
+
+  // 마지막 페이지가 그룹 사이즈보다 작은 경우
+  if (lastPage > totalPages) {
+    lastPage = totalPages;
+    firstPage = 1;
+  }
 
   let paginationHTML = ``;
-
   for (let i = firstPage; i <= lastPage; i++) {
-    paginationHTML += `<li class="page-item"><a class="page-link" onclick = "moveToPage(${i})">${i}</a></li>`;
+    paginationHTML += `<li class="page-item ${i === page ? "active" : ""}"><a class="page-link" onclick = "moveToPage(${i})">${i}</a></li>`;
   }
 
   document.querySelector(".pagination").innerHTML = paginationHTML;
@@ -63,7 +72,6 @@ const pagiNationRender = () => {
 
 // 페이지네이션 페이지 이동
 const moveToPage = (pageNumber) => {
-  console.log("movetopage", pageNumber);
   page = pageNumber; // 현재 page 는 동적으로 변함
   getNewsResponse();
 };
