@@ -39,6 +39,14 @@ const getNewsResponse = async () => {
   }
 };
 
+// 메인 뉴스 렌더링
+const getLatestNews = async () => {
+  url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
+  getNewsResponse();
+};
+
+getLatestNews(); // 제일 먼저
+
 // 에러 메시지 렌더링
 const errorRender = (errorMessage) => {
   const errorHTML = `<div class="alert alert-danger" role="alert">
@@ -62,10 +70,16 @@ const pagiNationRender = () => {
     firstPage = 1;
   }
 
-  let paginationHTML = ``;
+  let paginationHTML = `<li class="page-item" onclick = "moveToPage(${page - 1})">
+      <a class="page-link" href="#" tabindex="-1"><</a>
+    </li>`;
   for (let i = firstPage; i <= lastPage; i++) {
     paginationHTML += `<li class="page-item ${i === page ? "active" : ""}"><a class="page-link" onclick = "moveToPage(${i})">${i}</a></li>`;
   }
+
+  paginationHTML += `<li class="page-item" onclick = "moveToPage(${page + 1})">
+      <a class="page-link" href="#">></a>
+    </li>`;
 
   document.querySelector(".pagination").innerHTML = paginationHTML;
 };
@@ -75,14 +89,6 @@ const moveToPage = (pageNumber) => {
   page = pageNumber; // 현재 page 는 동적으로 변함
   getNewsResponse();
 };
-
-// 메인 뉴스 렌더링
-const getLatestNews = async () => {
-  url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`);
-  getNewsResponse();
-};
-
-getLatestNews();
 
 // 카테고리별 뉴스 렌더링
 const getNewsByCategory = async (event) => {
