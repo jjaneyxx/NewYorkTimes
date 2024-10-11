@@ -72,22 +72,25 @@ const pagiNationRender = () => {
 
   let paginationHTML = ``;
 
-  // 현재가 첫번째 페이지라면 < 버튼을 숨기기
+  // 현재가 첫번째 페이지가 아닐 경우 < 와 << 버튼 작동
   if (page !== 1) {
-    paginationHTML = `<li class="page-item" onclick = "moveToPage(${page - 1})">
-    <a class="page-link" href="#" tabindex="-1"><</a>
-  </li>`;
+    paginationHTML = `<li class="page-item" onclick = "moveToPage(1)">
+    <a class="page-link"  tabindex="-1"><<</a></li>
+    <li class="page-item" onclick = "moveToPage(${page - 1})">
+    <a class="page-link" tabindex="-1"><</a>
+    </li>`;
   }
 
   for (let i = firstPage; i <= lastPage; i++) {
     paginationHTML += `<li class="page-item ${i === page ? "active" : ""}"><a class="page-link" onclick = "moveToPage(${i})">${i}</a></li>`;
   }
 
-  // 현재가 마지막 페이지라면 > 버튼을 숨기기
+  // 현재가 마지막 페이지가 아닐 경우 > 와 >> 버튼 작동
   if (page !== totalPages) {
     paginationHTML += `<li class="page-item" onclick = "moveToPage(${page + 1})">
-    <a class="page-link" href="#">></a>
-  </li>`;
+    <a class="page-link">></a></li>
+    <li class="page-item" onclick = "moveToPage(${totalPages})">
+    <a class="page-link" >>></a></li>`;
   }
 
   document.querySelector(".pagination").innerHTML = paginationHTML;
