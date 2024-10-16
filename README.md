@@ -1,4 +1,4 @@
-# 📰 뉴스 페이지네이션 프로젝트
+# NewYorkTimes: Pagination Project
 
 ## 프로젝트 설명 🌟
 이 프로젝트는 **뉴스 API**를 활용하여 **실시간 뉴스**를 가져오고, **페이지네이션** 기능을 구현한 웹 애플리케이션입니다. 사용자는 **카테고리별 뉴스**를 탐색하거나 **키워드 검색**을 통해 뉴스를 확인할 수 있으며, 페이지를 넘기며 뉴스를 탐색할 수 있습니다.
@@ -15,22 +15,8 @@
 - **Fetch API**: 뉴스 API에서 데이터를 받아와 표시
 - **Day.js**: 날짜 및 시간을 상대적인 시간으로 변환
 
-## 설치 및 실행 방법
-1. 프로젝트를 클론합니다:
-   ```bash
-   git clone https://github.com/your-repo/news-pagination.git
-   ```
-2. API 키를 `.env` 파일에 추가합니다:
-   ```env
-   API_KEY=your_api_key
-   ```
-3. 로컬 서버에서 프로젝트를 실행합니다:
-   ```bash
-   open index.html
-   ```
-
 ## 배포 🌐
-**News API**가 비공개용으로 제공되므로, API 키의 노출을 방지하기 위해 배포하지 않았습니다. 로컬 환경에서 API 키를 설정하여 프로젝트를 실행할 수 있습니다.
+현재 이 프로젝트는 NewsAPI의 무료 요금제를 사용하고 있습니다. 따라서  API 키 노출을 방지하고 무료 요금제의 제한을 준수하기 위해 배포하지 않았습니다.
 
 ## 구현 화면 (데스크톱)
 <img src = "https://github.com/user-attachments/assets/50578b3a-a1f1-4d4a-ab8c-9b886e40d57a" width = 500px/>
