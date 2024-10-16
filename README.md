@@ -18,5 +18,5 @@
 ## 배포 
 현재 이 프로젝트는 NewsAPI의 무료 요금제를 사용하고 있습니다. 따라서  API 키 노출을 방지하고 무료 요금제의 제한을 준수하기 위해 배포하지 않았습니다.
 
-## 구현 화면 (데스크톱)
+## 구현 화면
 <img src = "https://github.com/user-attachments/assets/001dc521-75e8-4de9-8e87-2aad29573800" width = 500px/>
