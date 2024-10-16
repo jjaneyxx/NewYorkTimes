@@ -1,5 +1,37 @@
-## 데스크탑 화면
-<img src = "https://github.com/user-attachments/assets/50578b3a-a1f1-4d4a-ab8c-9b886e40d57a" width = 400px/> 
+# 📰 뉴스 페이지네이션 프로젝트
 
-## 모바일 화면
-<img src = "https://github.com/user-attachments/assets/7fc126e7-7427-4b75-98f0-7e5a12bbd912" width = 400px/> 
+## 프로젝트 설명 🌟
+이 프로젝트는 **뉴스 API**를 활용하여 **실시간 뉴스**를 가져오고, **페이지네이션** 기능을 구현한 웹 애플리케이션입니다. 사용자는 **카테고리별 뉴스**를 탐색하거나 **키워드 검색**을 통해 뉴스를 확인할 수 있으며, 페이지를 넘기며 뉴스를 탐색할 수 있습니다.
+
+## 주요 기능 🚀
+- 🔍 **뉴스 검색**: 원하는 키워드로 뉴스를 검색할 수 있습니다.
+- 🗂️ **카테고리 필터링**: Business, Entertainment, Sports 등 다양한 카테고리별 뉴스를 탐색할 수 있습니다.
+- 📄 **페이지네이션**: 각 페이지에 고정된 수의 뉴스 기사를 표시하고, 페이지 이동 버튼을 통해 여러 페이지의 뉴스를 확인할 수 있습니다.
+- ⚠️ **오류 처리**: API 통신 중 발생할 수 있는 오류를 감지하고 사용자에게 알림을 표시합니다.
+
+## 사용된 기술 스택 💻
+- **HTML/CSS**: 웹 페이지의 구조와 스타일을 정의
+- **JavaScript**: 동적인 페이지 업데이트 및 API 통신
+- **Fetch API**: 뉴스 API에서 데이터를 받아와 표시
+- **Day.js**: 날짜 및 시간을 상대적인 시간으로 변환
+
+## 설치 및 실행 방법
+1. 프로젝트를 클론합니다:
+   ```bash
+   git clone https://github.com/your-repo/news-pagination.git
+   ```
+2. API 키를 `.env` 파일에 추가합니다:
+   ```env
+   API_KEY=your_api_key
+   ```
+3. 로컬 서버에서 프로젝트를 실행합니다:
+   ```bash
+   open index.html
+   ```
+
+## 배포 🌐
+**News API**가 비공개용으로 제공되므로, API 키의 노출을 방지하기 위해 배포하지 않았습니다. 로컬 환경에서 API 키를 설정하여 프로젝트를 실행할 수 있습니다.
+
+## 구현 화면 (데스크톱)
+<img src = "https://github.com/user-attachments/assets/50578b3a-a1f1-4d4a-ab8c-9b886e40d57a" width = 500px/>
+
