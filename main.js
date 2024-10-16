@@ -5,7 +5,7 @@ let newsList = []; // 자주 사용하므로 전역변수로 둠
 let url = new URL(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`); // URL 을 전역변수로 선언
 let totalResult = 0;
 let page = 1; // 현재 페이지 번호
-const pageSize = 5; // 화면에 표시되는 기사 개수
+const pageSize = 10; // 화면에 표시되는 기사 개수
 const groupSize = 3; // 한 번에 보여줄 페이지 개수
 
 const navMenus = document.querySelectorAll("nav button");
